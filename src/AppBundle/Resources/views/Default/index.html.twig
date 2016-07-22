@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Alza Checker{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            padding-top: 50px;
+        }
+        .form {
+            padding: 40px 15px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% include '@App/Partials/navbar.html.twig' %}
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form method="post" action="{{ path('Default:check') }}" class="form">
+            <div class="form-group">
+                <label for="vouchers" class="control-label">Zadejte kupony: (na každý řádek jeden)</label>
+                <textarea class="form-control" id="vouchers" name="vouchers" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="form-control btn btn-primary">
+            </div>
+        </form>
+    </div>
+{% endblock %}

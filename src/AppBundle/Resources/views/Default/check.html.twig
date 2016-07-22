@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Alza Checker{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body {
+            padding-top: 100px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% include '@App/Partials/navbar.html.twig' %}
+
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Kupon</th>
+                    <th>Informace</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for voucher in result %}
+                    <tr class="{{ voucher.answer.Message == 'Dárkový poukaz byl již použit.' or voucher.answer.Message == 'Zadaný slevový kód není platný.' ? 'danger' : 'success' }}">
+                        <td>{{ voucher.code }}</td>
+                        <td>{{ voucher.answer.Message }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
